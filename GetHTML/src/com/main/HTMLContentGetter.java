@@ -36,11 +36,11 @@ public class HTMLContentGetter {
 				file.createNewFile();
 				FileWriter fw = new FileWriter(file.getAbsoluteFile());
 				BufferedWriter bw = new BufferedWriter(fw);
-//				begin of the file
+				// begin of the file
 				bw.write(
 						"<html><head><title></title></head><body style = \'background-color:#0B162C; font-family: cursive;  font-size:35; color:#C5FFBB;\'><div align=justify style=\'padding:0 320;  \'>");
 				bw.close();
-			} 
+			}
 
 			FileWriter fw = new FileWriter(file, true);
 			BufferedWriter bw = new BufferedWriter(fw);
@@ -51,22 +51,35 @@ public class HTMLContentGetter {
 			bw.close();
 			System.out.println("Done");
 		} catch (IOException e) {
-			
+
 		}
 	}
 
 	public static void main(String[] args) {
-		
-		for (int i = 37; i < 56; ++i) {
-			String content = getContent("https://www.fictionpress.com/s/2961893/" + i + "/Mother-of-Learning");
-			int beginIndex = content.indexOf("<div class='storytext");
-			int endIndex = content.indexOf("</div><div style='height:5px'></div><");
+
+		for (int i = 1; i < 42; ++i) {
+//			String content = getContent("https://www.fictionpress.com/s/2961893/" + i + "/Mother-of-Learning");
+			String content = null;
+			if(i<11) {
+				if(i==2) {
+					content = getContent("http://samlib.ru/d/dworcowa_i/a0" + i + "-1.shtml");
+				} else {
+					content = getContent("http://samlib.ru/d/dworcowa_i/a0" + i + ".shtml");
+				}
+				 
+			} else {
+				 content = getContent("http://samlib.ru/d/dworcowa_i/a" + i + ".shtml");
+			}
+//			System.out.println(content);
+			int beginIndex = content.indexOf("<hr size=2 noshade>",1000 );
+			int endIndex = content.indexOf("<hr size=2 noshade>",beginIndex+100);
 			System.out.println(beginIndex + " " + endIndex);
 			String story = content.substring(beginIndex, endIndex);
 			bufferWriter(story);
 		}
-//		end of the file
+		// end of the file
 		bufferWriter("</div></body></html>");
+		
 
 	}
 
