@@ -57,7 +57,7 @@ public class HTMLContentGetter {
 
 	public static void main(String[] args) {
 		
-		for (int i = 37; i < 56; ++i) {
+		for (int i = 57; i < 58; ++i) {
 			String content = getContent("https://www.fictionpress.com/s/2961893/" + i + "/Mother-of-Learning");
 			int beginIndex = content.indexOf("<div class='storytext");
 			int endIndex = content.indexOf("</div><div style='height:5px'></div><");
